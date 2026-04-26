@@ -1,10 +1,72 @@
 namespace lab2
 {
-	public partial class Form1 : Form
-	{
-		public Form1()
-		{
-			InitializeComponent();
-		}
-	}
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        public int RecursiveFactorial(int n)
+        {
+            if (n == 0)
+                return 1;
+            else
+                return n * RecursiveFactorial(n - 1);
+        }
+
+        private void btnCalculateFactorial_Click(object sender, EventArgs e)
+        {
+            int number = int.Parse(txtInput.Text);
+            int result = RecursiveFactorial(number);
+            lblResult.Text = $"Factorial: {result}";
+        }
+
+        public int RecursiveSum(int[] numbers, int n)
+        {
+            if (n <= 0)
+                return numbers[0];
+            else
+                return numbers[n] + RecursiveSum(numbers, n - 1);
+        }
+
+        private void btnCalculateSum_Click(object sender, EventArgs e)
+        {
+            int[] numbers = txtArrayInput.Text.Split(',').Select(int.Parse).ToArray();
+            int result = RecursiveSum(numbers, numbers.Length - 1);
+            lblSumResult.Text = $"Sum: {result}";
+        }
+
+        public int RecursiveFibonacci(int n)
+        {
+            if (n <= 1)
+                return n;
+            else
+                return RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2);
+        }
+
+        private void btnCalculateFibonacci_Click(object sender, EventArgs e)
+        {
+            int number = int.Parse(txtFibonacciInput.Text);
+            int result = RecursiveFibonacci(number);
+            lblFibonacciResult.Text = $"Fibonacci: {result}";
+        }
+
+        public int RecursivePower(int baseNumber, int exponent)
+        {
+            if (exponent == 0)
+                return 1;
+            else
+                return baseNumber * RecursivePower(baseNumber, exponent - 1);
+        }
+
+        private void btnCalculatePower_Click(object sender, EventArgs e)
+        {
+            int baseNumber = int.Parse(txtBaseInput.Text);
+            int exponent = int.Parse(txtExponentInput.Text);
+
+            int result = RecursivePower(baseNumber, exponent);
+            lblPowerResult.Text = $"Power: {result}";
+        }
+    }
 }
